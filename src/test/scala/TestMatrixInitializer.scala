@@ -32,12 +32,3 @@ extension (m: MatrixInitializer)
     }
     m.matrix
   }
-
-  def prettyPrint(matrix: Array[Array[Int]]): Unit = {
-    for (i <- 0 until m.rows) {
-      for (j <- 0 until m.cols) {
-        print(matrix(i)(j) + " ")
-      }
-      println()
-    }
-  }

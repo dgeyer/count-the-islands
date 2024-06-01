@@ -1,15 +1,23 @@
 package fun.count.island
 
+import MatrixInitializer.colsLenght
+
 class IslandCounter {
-  private val RowNext = Array(-1, -1, -1,  0, 0,  1, 1, 1)
-  private val ColNext = Array(-1,  0,  1, -1, 1, -1, 0, 1)  
+  private val RowNext = Array(-1, -1, -1, 0, 0, 1, 1, 1)
+  private val ColNext = Array(-1, 0, 1, -1, 1, -1, 0, 1)
 
   def countIslands(matrix: Array[Array[Int]]): Int = {
     val rows = matrix.length
-    val cols = matrix(0).length
+    val cols = colsLenght(matrix)
 
-    def isUnvisitedOne(i: Int, j: Int, visited: Array[Array[Boolean]]): Boolean = {
-      i >= 0 && i < rows && j >= 0 && j < cols && !visited(i)(j) && matrix(i)(j) == 1
+    def isUnvisitedOne(
+        i: Int,
+        j: Int,
+        visited: Array[Array[Boolean]]
+    ): Boolean = {
+      i >= 0 && i < rows && j >= 0 && j < cols && !visited(i)(j) && matrix(i)(
+        j
+      ) == 1
     }
 
     def dfs(i: Int, j: Int, visited: Array[Array[Boolean]]): Unit = {
@@ -34,5 +42,5 @@ class IslandCounter {
 
     count
   }
-  
+
 }
