@@ -1,24 +1,23 @@
 package fun.count.island
 
 class IslandCounter {
+  private val RowNext = Array(-1, -1, -1,  0, 0,  1, 1, 1)
+  private val ColNext = Array(-1,  0,  1, -1, 1, -1, 0, 1)  
 
   def countIslands(matrix: Array[Array[Int]]): Int = {
     val rows = matrix.length
     val cols = matrix(0).length
 
-    def isSafe(i: Int, j: Int, visited: Array[Array[Boolean]]): Boolean = {
+    def isUnvisitedOne(i: Int, j: Int, visited: Array[Array[Boolean]]): Boolean = {
       i >= 0 && i < rows && j >= 0 && j < cols && !visited(i)(j) && matrix(i)(j) == 1
     }
 
     def dfs(i: Int, j: Int, visited: Array[Array[Boolean]]): Unit = {
-      val rowNbr = Array(-1, -1, -1,  0, 0,  1, 1, 1)
-      val colNbr = Array(-1,  0,  1, -1, 1, -1, 0, 1)
-
       visited(i)(j) = true
 
       for (k <- 0 until 8) {
-        if (isSafe(i + rowNbr(k), j + colNbr(k), visited)) {
-          dfs(i + rowNbr(k), j + colNbr(k), visited)
+        if (isUnvisitedOne(i + RowNext(k), j + ColNext(k), visited)) {
+          dfs(i + RowNext(k), j + ColNext(k), visited)
         }
       }
     }
